@@ -2,14 +2,31 @@ const express = require ("express");
 const router = express.Router();
 
 
-// Return all requests
+// Return all solicitations
 router.get('/', (req, res, next) =>{
       res.status(200).send({
             message: "Using get into requests route"
       });
 });
 
-//Insert one request
+//Insert one solicitations
+router.post('/', (req, res) => {
+
+      const newSolicitation = new Solicitation({
+            name: req.body.name,
+            price: req.body.price
+      })
+      newProduct().save().then(() => {
+            res.status(201).send({
+
+                  message: 'Inserted a solicitation',
+                  solicitationCreated: newSolicitation
+            });
+
+      });
+})
+
+
 router.post('/',(req, res, next) => {
       const request = {
             id_product: req.body.id_product,
@@ -21,11 +38,11 @@ router.post('/',(req, res, next) => {
       });
 });
 
-//Return data of one request
-router.get('/:id_request', (req, res, next) => {
+//Return data of one solicitations
+router.get('/:id_solicitation', (req, res, next) => {
       const id = req.params.id_request
       res.status(200).send({
-            message: "Detals of the request",
+            message: "Detals of the solicitation",
             id_request: id
       });
 
@@ -33,10 +50,10 @@ router.get('/:id_request', (req, res, next) => {
 })
 
 
-//Delete  one request
+//Delete  one solicitation
 router.delete('/',(req, res, next) => {
       res.status(201).send({
-            message: 'Using ths DELETE into requests routes'
+            message: 'Using ths DELETE into solicitations routes'
       });
 });
 

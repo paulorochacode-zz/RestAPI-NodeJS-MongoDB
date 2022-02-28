@@ -1,0 +1,5 @@
+{
+      "env" : {
+            "MONGODB_URI" : "mongodb+srv://paulorochadb:aIZ6nQKhTvyAKmre@cluster0.ua3n6.mongodb.net/MoviesStore?retryWrites=true&w=majority"
+      }
+}

@@ -1,26 +1,41 @@
 const express = require("express");
 const router = express.Router();
-
+const mongoose = require('mongoose')
+require ("../models/Products")
+const Product = mongoose.model("Products")
 
 // Return all products
 router.get('/', (req, res, next) => {
-      res.status(200).send({
-            message: "Retun all products",
-      });
-});
+      
+      Product.find().lean().then((products) => {
+            res.status(200).send({
+            message: products,
+            });
+      }).catch((err) => {
+            res.status(500).send({
+                  message: err,
+                  });
+      })
+})
 
 //Insert one product
-router.post('/', (req, res, next) => {
-      
-      const product = {
+router.post('/', (req, res) => {
+
+      const newProduct = new Product({
             name: req.body.name,
             price: req.body.price
-      };
+      })
+      newProduct.save().then((Product) => {
+            res.status(201).send({
+                  message: 'Insert a product',
+                  productCreated: newProduct
+            });
+      }).catch((err)=>{
+            res.status(500).send({
+                  message: err,
+            });
+      })
 
-      res.status(201).send({
-            message: 'Insert a product',
-            productCreated: product
-      });
 });
 
 //Return data of one product

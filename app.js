@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 
 
 const productsRoute = require ('./routes/Products')
-const productsRequests = require ('./routes/Requests')
+const requestsRoute = require ('./routes/Solicitation')
 
 //Morgan return all callbacks requests on terminal
 app.use(morgan('dev'))
@@ -28,7 +28,7 @@ app.use((req, res, next) =>{
 
 //Routes
 app.use('/products', productsRoute);
-app.use('/requests', productsRequests);
+app.use('/requests', requestsRoute);
 
 //Error, not found
 app.use((req, res, next) =>{
