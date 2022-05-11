@@ -1,5 +1,5 @@
 # RestAPI-NodeJS-MongoDB
-<h2>RestAPI-NodeJS-MongoDB</h2>
+<h2>API for movie store</h2>
 <h3>Here it's the link to access the api documentation:</h3><h3>https://storeapinodejsmongodb.herokuapp.com/api-docs/</h3>
 <h3>Here it's the link to access the api </h3><h3>https://storeapinodejsmongodb.herokuapp.com/</h3></br>
 
