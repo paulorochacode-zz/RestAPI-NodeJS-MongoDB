@@ -2,10 +2,13 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser')
-
+const swaggerUi = require ('swagger-ui-express')
+const swaggerDocs =  require('./swagger.json')
 
 const productsRoute = require ('./routes/Products')
 const requestsRoute = require ('./routes/Solicitation')
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
 //Morgan return all callbacks requests on terminal
 app.use(morgan('dev'))

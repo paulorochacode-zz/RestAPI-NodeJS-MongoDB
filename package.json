@@ -9,11 +9,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@nestjs/swagger": "^5.2.1",
     "body-parser": "^1.19.2",
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "mongoose": "^6.2.3",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "swagger-ui-express": "^4.3.0"
+  },
+  "devDependencies": {
+    "@types/swagger-ui-express": "^4.1.3"
   }
 }

@@ -1,0 +1,81 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API for movie store",
+        "description": "manipulation of the stock and products requests",
+        "contact": {
+            "email": "paulorochacode@outlook.com"
+        },
+        "version": "1.00"
+    },
+    "servers": [
+        {
+            "url": "https://storeapinodejsmongodb.herokuapp.com",
+            "description": "production"
+        }
+    ],
+    "paths": {
+        "/products": {
+            "post": {
+                "sumary": "To register a product",
+                "description": "This route was created to register a new product",
+                "tags": [
+                    "Products"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Product"
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "name": "Harry Potter and the Philosopher Stone",
+                                        "price": 59
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "201" : {
+                        "description" : "productCreated",
+                        "content" : {
+                            "application/json" : {
+                                "schema":{
+                                    "items": {
+                                        "$ref" : "#/components/schemas/Product"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500" : {
+                        "description" : "err"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Product": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "number"
+                    },
+                    "_id": {
+                        "type": "number"
+                    }
+                    
+                }
+            }
+        }
+    }
+}

@@ -28,7 +28,7 @@ router.post('/', (req, res, next) => {
       });
       newProduct.save().then((Product) => {
             res.status(201).send({
-                  message: 'Insert a product',
+                  message: 'Product created',
                   productCreated: newProduct
             });
       }).catch((err) => {
