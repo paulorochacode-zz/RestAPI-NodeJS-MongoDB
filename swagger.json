@@ -12,16 +12,30 @@
         {
             "url": "https://storeapinodejsmongodb.herokuapp.com",
             "description": "production"
+        },
+        {
+            "url": "https://localhost:3006/",
+            "description": "local"
+        }
+    ],
+    "tags": [
+        {
+            "name": "products",
+            "description": "name and price of the products"
+        },
+        {
+            "name": "orders",
+            "description": "Access to products orders"
         }
     ],
     "paths": {
         "/products": {
             "post": {
-                "sumary": "To register a product",
-                "description": "This route was created to register a new product",
                 "tags": [
-                    "Products"
+                    "products"
                 ],
+                "summary": "To register a product",
+                "description": "This route was created to register a new product",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -39,21 +53,346 @@
                         }
                     }
                 },
-                "responses" : {
-                    "201" : {
-                        "description" : "productCreated",
-                        "content" : {
-                            "application/json" : {
-                                "schema":{
+                "responses": {
+                    "201": {
+                        "description": "productCreated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
                                     "items": {
-                                        "$ref" : "#/components/schemas/Product"
+                                        "$ref": "#/components/schemas/Product"
                                     }
                                 }
                             }
                         }
                     },
-                    "500" : {
-                        "description" : "err"
+                    "500": {
+                        "description": "err"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "products"
+                ],
+                "summary": "Show all products",
+                "description": "Returns a single product",
+                "operationId": "getPetById",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/components/schemas/Product"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Product not found"
+                    }
+                }
+            }
+        },
+        "/products/{product_id}": {
+            "patch": {
+                "tags": [
+                    "products"
+                ],
+                "summary": "To change a product",
+                "description": "This route was created to change an existent product",
+                "requestPath": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Product"
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "name": "The Spiderman",
+                                        "price": 59
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Altered with success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/Product"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "err"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "products"
+                ],
+                "summary": "Find one product by ID",
+                "description": "Returns a single product",
+                "operationId": "getPetById",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "productID",
+                        "in": "path",
+                        "description": "ID of the product",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/components/schemas/Product"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Product not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "products"
+                ],
+                "summary": "Delete a product",
+                "description": "",
+                "operationId": "deleteProduct",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "api_key",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "petId",
+                        "in": "path",
+                        "description": "Pet id to delete",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Pet not found"
+                    }
+                }
+            }
+        },
+        "/orders": {
+            "post": {
+                "tags": [
+                    "orders"
+                ],
+                "summary": "To register a order",
+                "description": "This route was created to register a new order",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Order"
+                            },
+                            "examples": {
+                                "order": {
+                                    "value": {
+                                        "name": "Harry Potter and the Philosopher Stone",
+                                        "price": 59
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "orderCreated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/Order"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "err"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "orders"
+                ],
+                "summary": "Show all orders",
+                "description": "Returns a single order",
+                "operationId": "getPetById",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/components/schemas/Product"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Order not found"
+                    }
+                }
+            }
+        },
+        "/orders/{order_id}": {
+            "patch": {
+                "tags": [
+                    "orders"
+                ],
+                "summary": "To change a order",
+                "description": "This route was created to change an existent order",
+                "requestPath": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Order"
+                            },
+                            "examples": {
+                                "order": {
+                                    "value": {
+                                        "name": "The Spiderman",
+                                        "price": 59
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Altered with success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/Order"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "err"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "orders"
+                ],
+                "summary": "Find one order by ID",
+                "description": "Returns a single order",
+                "operationId": "getPetById",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "productID",
+                        "in": "path",
+                        "description": "ID of the order",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/components/schemas/Order"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Order not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "orders"
+                ],
+                "summary": "Delete a order",
+                "description": "",
+                "operationId": "deleteOrder",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "api_key",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "petId",
+                        "in": "path",
+                        "description": "Order id to delete",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Order not found"
                     }
                 }
             }
@@ -70,10 +409,24 @@
                     "price": {
                         "type": "number"
                     },
-                    "_id": {
+                    "id": {
                         "type": "number"
                     }
                     
+                }
+            },
+            "Order": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "number"
+                    },
+                    "id": {
+                        "type": "number"
+                    }
                 }
             }
         }

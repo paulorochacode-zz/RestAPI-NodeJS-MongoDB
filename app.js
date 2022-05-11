@@ -4,9 +4,12 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser')
 const swaggerUi = require ('swagger-ui-express')
 const swaggerDocs =  require('./swagger.json')
+const cors = require('cors')
 
 const productsRoute = require ('./routes/Products')
 const requestsRoute = require ('./routes/Solicitation')
+
+app.use(cors())
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
