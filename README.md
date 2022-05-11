@@ -1,7 +1,7 @@
 # RestAPI-NodeJS-MongoDB
 <h2>RestAPI-NodeJS-MongoDB</h2>
-<h3>Here it's the link to access the api documentation:</h3><a><h3>https://storeapinodejsmongodb.herokuapp.com/api-docs/</h3><a/>
-<h3>Here it's the link to access the api </h3><a><h3>https://storeapinodejsmongodb.herokuapp.com/</h3><a/></br>
+<h3>Here it's the link to access the api documentation:</h3><a><h3>https://storeapinodejsmongodb.herokuapp.com/api-docs/</h3></a>
+<h3>Here it's the link to access the api </h3><a><h3>https://storeapinodejsmongodb.herokuapp.com/</h3></a></br>
 
 <h2>To run it in your machine:</h2>
 <h4>1 - Download/clone the repository with nodejs already installed run the ccommand : npm install into the folder</h4>
