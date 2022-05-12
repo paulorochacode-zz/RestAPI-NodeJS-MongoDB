@@ -21,7 +21,7 @@
     "tags": [
         {
             "name": "products",
-            "description": "name and price of the products"
+            "description": "Name and price of the products"
         },
         {
             "name": "orders",
